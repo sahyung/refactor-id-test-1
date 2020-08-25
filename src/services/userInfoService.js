@@ -1,16 +1,26 @@
 const axios = require("axios");
 const config = require("../config");
 
-function getUserInfo(token) {
+function getUserInfo(token, cb) {
     axios({
         method: "get",
-        url: `${config.apiUrl}/users`,
+        url: `${config.apiUrl}/user`,
         headers: {
-          Authorization: "token " + token,
+          Authorization: "bearer " + token,
+          Accept: "application/vnd.github.v3+json",
         },
       }).then((response) => {
-        return response.data;
+        // console.log({
+        //   error,
+        //   user
+        // })
+        return cb(null, response.data);
+      })
+      .catch((error) => {
+        return cb(error);
       });
   }
 
-module.export = getUserInfo
+module.exports = {
+  getUserInfo: getUserInfo,
+}
