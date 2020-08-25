@@ -14,7 +14,6 @@ function callback(req, res) {
     .then((resp) => resp.data.access_token)
     .then((accessToken) => {
       UserServices.getUserInfo(accessToken, function (error, user) {
-        console.log({error, user})
         if(user){
           res.json({
             data: {

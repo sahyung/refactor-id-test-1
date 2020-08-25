@@ -10,10 +10,6 @@ function getUserInfo(token, cb) {
           Accept: "application/vnd.github.v3+json",
         },
       }).then((response) => {
-        // console.log({
-        //   error,
-        //   user
-        // })
         return cb(null, response.data);
       })
       .catch((error) => {
